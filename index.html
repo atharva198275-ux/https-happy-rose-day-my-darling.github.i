@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Happy Rose Day 💜</title>
+  <style>
+    body{
+      margin:0;
+      font-family:'Poppins',sans-serif;
+      background:linear-gradient(#2b1055,#6a0572,#a4508b);
+      text-align:center;
+      overflow:hidden;
+    }
+    h1,h2{color:#f3d9ff;}
+    p{color:#f8eaff;font-size:17px;}
+    .box{
+      background:rgba(255,255,255,0.12);
+      backdrop-filter:blur(8px);
+      width:85%;
+      margin:60px auto;
+      padding:26px;
+      border-radius:22px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.35);
+      animation:pop .9s ease;
+    }
+    button{
+      padding:10px 22px;
+      margin:8px;
+      border:none;
+      border-radius:22px;
+      background:linear-gradient(45deg,#7b2cbf,#c77dff);
+      color:white;
+      font-size:16px;
+      cursor:pointer;
+    }
+    .no{background:linear-gradient(45deg,#444,#777);}
+    .error{color:#ffd6ff;margin-top:10px;font-size:15px;}
+    @keyframes pop{
+      from{transform:scale(.6);opacity:0}
+      to{transform:scale(1);opacity:1}
+    }
+    .rose{
+      position:fixed;
+      top:-50px;
+      font-size:26px;
+      animation:fall linear infinite;
+      filter:drop-shadow(0 0 6px rgba(199,125,255,.8));
+    }
+    @keyframes fall{
+      to{transform:translateY(110vh) rotate(360deg);}
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="box" id="content">
+  <h2>💜 Shayari pehle 🌹</h2>
+  <p>
+    “Har rang me khoobsurti hoti hai,<br>
+    Par purple sa sukoon kahin aur nahi hota 💜”
+  </p>
+  <p>Kya tumhe **purple roses** pasand hain?</p>
+  <button onclick="right()">Haan 💜</button>
+  <button class="no" onclick="wrong()">Nahi</button>
+  <div id="msg" class="error"></div>
+</div>
+
+<script>
+let step=0;
+let name="Diksha";
+
+function wrong(){
+  document.getElementById("msg").innerHTML =
+  "❌ Galat choice 😌<br>Hint: **Haan** try karo 💜";
+}
+
+function right(){
+  step++;
+  const c=document.getElementById("content");
+
+  if(step==1){
+    c.innerHTML=`
+    <h2>🌹 Shayari</h2>
+    <p>
+    “Gulab laal hote hain,<br>
+    Par jo dil ke kareeb ho…<br>
+    Wo purple hote hain 💜”
+    </p>
+    <p>Agar main ek purple rose doon… logi?</p>
+    <button onclick="right()">Haan 😍</button>
+    <button class="no" onclick="wrong()">Nahi</button>
+    <div id="msg" class="error"></div>`;
+  }
+
+  else if(step==2){
+    c.innerHTML=`
+    <h2>💜 Special Question 🌹</h2>
+    <p><b>Will you be my purple rose?</b> 😌💜</p>
+    <button onclick="right()">Haan 💍</button>
+    <button class="no" onclick="wrong()">Nahi</button>
+    <div id="msg" class="error"></div>`;
+  }
+
+  else{
+    c.innerHTML=`
+    <h1>💜 Happy Rose Day 💜</h1>
+    <h2>${name} 🌹</h2>
+    <p>
+    “Ye purple rose sirf tumhare liye,<br>
+    Kyunki kuch log khaas rang me hi ache lagte hain 💜”
+    </p>`;
+  }
+}
+
+// falling purple roses
+for(let i=0;i<26;i++){
+  let r=document.createElement("div");
+  r.innerHTML="💜🌹";
+  r.className="rose";
+  r.style.left=Math.random()*100+"vw";
+  r.style.animationDuration=3+Math.random()*5+"s";
+  r.style.fontSize=(20+Math.random()*14)+"px";
+  document.body.appendChild(r);
+}
+</script>
+
+</body>
+</html>
